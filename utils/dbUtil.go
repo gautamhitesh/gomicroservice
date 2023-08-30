@@ -9,16 +9,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"os"
 )
 
-const connnectionString = "mongodb+srv://gautamhitesh:Qwerty123@hg1.clvqkec.mongodb.net/?retryWrites=true&w=majority"
 const dbName = "db1"
 const collectionName = "movies"
 
 var collection *mongo.Collection
 
 func init() {
-	clientOptions := options.Client().ApplyURI(connnectionString)
+	clientOptions := options.Client().ApplyURI(os.Getenv("connectionstring"))
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
